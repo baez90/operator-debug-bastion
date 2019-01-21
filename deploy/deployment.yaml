@@ -14,13 +14,20 @@ spec:
       labels:
         app: operator-debug-bastion
     spec:
+      serviceAccountName: operator-debug-bastion
       containers:
       - name: bastion
         image: baez90/operator-debug-bastion:latest
         imagePullPolicy: Always
+        command:
+          - sleep
+          - "3600"
         ports:
         - name: dlv-debug
           containerPort: 2345
+        env:
+          - name: WATCH_NAMESPACE
+            value: default
         resources:
           limits:
             cpu: 500m

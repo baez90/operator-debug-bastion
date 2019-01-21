@@ -1,0 +1,11 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: operator-debug-bastion
+subjects:
+- kind: ServiceAccount
+  name: operator-debug-bastion
+roleRef:
+  kind: Role
+  name: operator-debug-bastion
+  apiGroup: rbac.authorization.k8s.io
