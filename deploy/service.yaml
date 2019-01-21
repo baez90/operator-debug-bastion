@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: operator-debug-bastion
+spec:
+  selector:
+    app: operator-debug-bastion
+  ports:
+  - protocol: TCP
+    port: 2345
+    targetPort: 2345

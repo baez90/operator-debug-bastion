@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: operator-debug-bastion
+  labels:
+    app: operator-debug-bastion
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: operator-debug-bastion
+  template:
+    metadata:
+      labels:
+        app: operator-debug-bastion
+    spec:
+      containers:
+      - name: bastion
+        image: baez90/operator-debug-bastion:latest
+        imagePullPolicy: Always
+        ports:
+        - name: dlv-debug
+          containerPort: 2345
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1024Mi
