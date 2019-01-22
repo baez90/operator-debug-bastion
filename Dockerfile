@@ -32,7 +32,9 @@ COPY --from=tools-build /go/bin /go/bin
 RUN curl -L https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl -o /usr/bin/kubectl && \
     chmod +x /usr/bin/kubectl
 
+ADD sleep.sh /
+
 EXPOSE 2345
 
 ENTRYPOINT [ "/bin/bash" ]
-CMD ["while true; do sleep 60; done"]
+CMD ["/sleep.sh"]
