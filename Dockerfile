@@ -1,5 +1,7 @@
 FROM golang:stretch as tools-build
 
+ARG OPERATOR_SDK_VERSION=v0.5.0
+
 RUN go get -u github.com/golang/dep/cmd/dep && \
     go get -u github.com/derekparker/delve/cmd/dlv && \
     go get -u github.com/cespare/reflex && \
@@ -8,6 +10,7 @@ RUN go get -u github.com/golang/dep/cmd/dep && \
     cd $GOPATH/src/github.com/operator-framework && \
     git clone https://github.com/operator-framework/operator-sdk && \
     cd operator-sdk && \
+    git checkout tags/${OPERATOR_SDK_VERSION} && \
     make dep && \
     make install
 
